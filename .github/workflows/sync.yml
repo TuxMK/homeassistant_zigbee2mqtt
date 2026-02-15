@@ -5,15 +5,11 @@ on:
     - cron: '0 4 * * *'
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
       - name: Sync fork with upstream
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh repo sync ${{ github.repository }} --source zigbee2mqtt/hassio-zigbee2mqtt --branch master
-
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: gh repo sync TuxMK/homeassistant_zigbee2mqtt --source zigbee2mqtt/hassio-zigbee2mqtt --branch master
